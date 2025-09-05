@@ -29,7 +29,7 @@ public class TicketMachine
     }
 
     /**
-     * @Return The price of a ticket.
+     * Return the price of a ticket.
      */
     public int getPrice()
     {
@@ -37,11 +37,19 @@ public class TicketMachine
     }
 
     /**
-     * Return The amount of money already inserted for the next ticket.
+     * Return the amount of money already inserted for the next ticket.
      */
     public int getBalance()
     {
         return balance;
+    }
+    
+    /**
+     * Return the total money recieved.
+     */
+    public int getTotal()
+    {
+        return total;
     }
 
     /**
@@ -65,7 +73,9 @@ public class TicketMachine
      */
     public void printTicket()
     {
-        if(balance >= price) {
+        int amountLeftToPay;
+        amountLeftToPay = (price - balance);
+        if(amountLeftToPay <= 0) {
             // Simulate the printing of a ticket.
             System.out.println("##################");
             System.out.println("# The BlueJ Line");
@@ -81,7 +91,7 @@ public class TicketMachine
         }
         else {
             System.out.printf("You must insert at least %d more cents.%n",
-                              price - balance);
+                              amountLeftToPay);
         }
     }
 
@@ -96,4 +106,29 @@ public class TicketMachine
         balance = 0;
         return amountToRefund;
     }
+    
+    /**
+     * Check if a ticket is affordable based on the given budget.
+     */
+    public void affordable(int budget)
+    {
+        if (price > budget) {
+            System.out.println("Too expensive.");
+        }
+        else {
+            System.out.println("Just right.");
+        }
+    }
+    
+    /**
+     * Empty the ticket machine of money.
+     */
+    public int emptyMachine()
+    {
+        int stored;
+        stored = total;
+        total = 0;
+        return stored;
+    }
 }
+
