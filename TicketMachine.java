@@ -55,14 +55,15 @@ public class TicketMachine
     /**
      * Receive an amount of money from a customer.
      * Check that the amount is sensible.
+     * Rearranged for Question 49
      */
     public void insertMoney(int amount)
     {
-        if(amount > 0) {
-            balance = balance + amount;
+        if(amount < 0) {
+            System.out.println("Use a positive amount rather than: " + amount);
         }
         else {
-            System.out.println("Use a positive amount rather than: " + amount);
+            balance = balance + amount;
         }
     }
 
@@ -70,6 +71,7 @@ public class TicketMachine
      * Print a ticket if enough money has been inserted, and
      * reduce the current balance by the ticket price. Print
      * an error message if more money is required.
+     * Modified for Question 63
      */
     public void printTicket()
     {
@@ -109,11 +111,12 @@ public class TicketMachine
     
     /**
      * Check if a ticket is affordable based on the given budget.
+     * Question 57 and 58
      */
     public void affordable(int budget)
     {
         if (price > budget) {
-            System.out.println("Too expensive.");
+            System.out.printf("Too expensive. Your budget is %d cents.%n",budget);
         }
         else {
             System.out.println("Just right.");
@@ -122,6 +125,7 @@ public class TicketMachine
     
     /**
      * Empty the ticket machine of money.
+     * Question 62
      */
     public int emptyMachine()
     {
